@@ -43,7 +43,7 @@ test:
 
 deploy:
     stage: deploy
-    script: ./deploy
+    script: gradle build jar
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
