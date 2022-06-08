@@ -8,7 +8,7 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: gradle:alpine
+image: gradle:4.8.1-jdk8-slim
 
 # Disable the Gradle daemon for Continuous Integration servers as correctness
 # is usually a priority over speed in CI environments. Using a fresh
@@ -21,9 +21,10 @@ before_script:
     - GRADLE_USER_HOME="$(pwd)/.gradle"
     - export GRADLE_USER_HOME
 
+
 build:
     stage: build
-    script: gradle --build-cache assemble
+    script: gradle assemble -x bootJar
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
@@ -40,10 +41,13 @@ test:
         paths:
             - build
             - .gradle
+    artifacts:
+        paths:
+            - build/jacocoHtml/*
 
 deploy:
     stage: deploy
-    script: gradle build jar
+    script: gradle bootJar
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
@@ -52,4 +56,8 @@ deploy:
             - .gradle
     artifacts:
         paths:
-            - /*.jar
+            - build/libs/*.jar
+    only:
+        - master
+
+
