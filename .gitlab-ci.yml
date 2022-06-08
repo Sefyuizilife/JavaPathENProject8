@@ -41,7 +41,6 @@ test:
         paths:
             - build
             - .gradle
-            -
     artifacts:
         paths:
             - build/jacocoHtml/*
