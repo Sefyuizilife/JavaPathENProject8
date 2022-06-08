@@ -52,4 +52,4 @@ deploy:
             - .gradle
     artifacts:
         paths:
-            - /*.jar
+            - build/libs/*.jar
