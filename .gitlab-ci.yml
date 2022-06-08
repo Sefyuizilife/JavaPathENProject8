@@ -43,13 +43,12 @@ test:
 
 deploy:
     stage: deploy
-    script: gradle build jar
+    script: gradle assemble
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
         paths:
             - build
             - .gradle
-    artifacts:
-        paths:
-            - build/libs/*.jar
+    only:
+        - master
