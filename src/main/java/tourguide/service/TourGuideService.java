@@ -35,7 +35,7 @@ public class TourGuideService {
     private final        TripPricer        tripPricer          = new TripPricer();
     // Database connection will be used for external users, but for testing purposes internal users are provided and stored in memory
     private final        Map<String, User> internalUserMap     = new HashMap<>();
-    boolean testMode = true;
+    private final        boolean           testMode            = true;
 
     public TourGuideService(GpsUtil gpsUtil, RewardsService rewardsService) {
 
@@ -60,7 +60,7 @@ public class TourGuideService {
 
     public VisitedLocation getUserLocation(User user) {
 
-        return (!user.getVisitedLocations().isEmpty()) ? user.getLastVisitedLocation() : this.trackUserLocation(user);
+        return !user.getVisitedLocations().isEmpty() ? user.getLastVisitedLocation() : this.trackUserLocation(user);
     }
 
     public User getUser(String userName) {
