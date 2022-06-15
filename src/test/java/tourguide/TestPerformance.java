@@ -12,7 +12,6 @@ import tourguide.service.RewardsService;
 import tourguide.service.TourGuideService;
 import tourguide.user.User;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

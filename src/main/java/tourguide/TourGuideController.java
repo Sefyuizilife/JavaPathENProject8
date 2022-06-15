@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class TourGuideController {
 
-    TourGuideService tourGuideService;
+    private final TourGuideService tourGuideService;
 
     public TourGuideController(TourGuideService tourGuideService) {
 

@@ -13,4 +13,5 @@ public final class InternalTestHelper {
     public static void setInternalUserNumber(int internalUserNumber) {
 
         InternalTestHelper.INTERNAL_USER_NUMBER = internalUserNumber;
-    }}
+    }
+}
