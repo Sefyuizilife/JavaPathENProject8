@@ -21,7 +21,6 @@ before_script:
     - GRADLE_USER_HOME="$(pwd)/.gradle"
     - export GRADLE_USER_HOME
 
-
 build:
     stage: build
     script: gradle assemble -x bootJar
@@ -59,5 +58,3 @@ deploy:
             - build/libs/*.jar
     only:
         - master
-
-
