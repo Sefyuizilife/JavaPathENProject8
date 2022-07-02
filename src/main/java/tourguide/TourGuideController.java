@@ -6,13 +6,12 @@ import gpsUtil.location.Location;
 import gpsUtil.location.VisitedLocation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import tourguide.dto.NearbyAttractionDTO;
 import tourguide.service.TourGuideService;
 import tourguide.user.User;
+import tourguide.user.UserPreferences;
 import tripPricer.Provider;
 
 import java.util.*;
@@ -124,10 +123,17 @@ public class TourGuideController {
         return JsonStream.serialize(providers);
     }
 
-    @RequestMapping(value = "/users")
-    private void updateUser(String userName) {
+    @RequestMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
+    private String updateUser(@RequestParam String userName, @RequestBody UserPreferences preferences) {
 
-        this.tourGuideService.updateUser(this.getUser(userName));
+        User user = this.getUser(userName);
+
+        user.setUserPreferences(preferences);
+
+        this.tourGuideService.updateUser(user);
+
+        return JsonStream.serialize(user);
+
     }
 
     private User getUser(String userName) {

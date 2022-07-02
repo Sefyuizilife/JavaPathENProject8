@@ -18,7 +18,6 @@ public class UserPreferences {
     private       int          numberOfChildren    = 0;
 
     public UserPreferences() {
-
     }
 
     public int getAttractionProximity() {
